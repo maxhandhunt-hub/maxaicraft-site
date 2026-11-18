@@ -87,12 +87,11 @@ h1 em{background:linear-gradient(transparent 64%,var(--lime) 64% 88%,transparent
 #services{padding:clamp(70px,9vw,130px) 0 clamp(60px,8vw,120px)}
 .sv{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(24px,4.4vw,64px);margin-top:clamp(30px,4vw,56px);align-items:start}
 .list{border-top:1px solid var(--line)}
-.it{position:relative;padding:19px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px minmax(0,1fr) 28px;align-items:center;cursor:pointer;color:#8a90a2;transition:color .3s,padding-left .35s;background:none;width:100%;text-align:left;border-left:0;border-right:0;border-top:0;font-family:inherit}
+.it{position:relative;padding:19px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;cursor:pointer;color:#8a90a2;transition:color .3s;background:none;width:100%;text-align:left;border-left:0;border-right:0;border-top:0;font-family:inherit}
 .it .n{font-size:12px}
 .it h4{font-size:clamp(18px,1.7vw,24px);letter-spacing:-.01em;font-weight:400;line-height:1.12}
-.it .a{font-size:20px;opacity:0;transform:translate(-8px,8px);transition:.35s}
 .it:hover{color:var(--ink)}
-.it.on{color:var(--ink);padding-left:12px}.it.on .a{opacity:1;transform:none;color:var(--cobalt)}.it.on .n{color:var(--cobalt)}
+.it .n,.it h4{transition:transform .35s}.it.on{color:var(--ink)}.it.on .n,.it.on h4{transform:translateX(12px)}.it.on .n{color:var(--cobalt)}
 .it .pg{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--cobalt)}
 .it.on .pg{width:100%}
 .ap .it.on .pg{width:0;animation:pgfill var(--dur,7s) linear forwards}
@@ -781,7 +780,7 @@ function pick(i,user){const prev=cur;cur=i;
  frame.querySelectorAll('.ph').forEach((im,j)=>{im.className='ph'+(j===i?' on':(j<i?' prev':''))});
  $('pn').textContent='0'+(i+1)+' / 0'+S.length;
  const s=S[i];desc.innerHTML='<h3 class="d"></h3><p class="dt"></p><div class="got"><i>✓</i><div><small class="mono">ЧТО ПОЛУЧАЕТ КЛИЕНТ</small><p></p></div></div>'+moreHtml(i);typeBlock('svc',[[desc.querySelector('h3'),s[0]],[desc.querySelector('.dt'),s[2]],[desc.querySelector('.got p'),s[3]]])}
-S.forEach((s,i)=>{const d=document.createElement('button');d.type='button';d.className='it';d.setAttribute('role','tab');d.innerHTML='<span class="n mono">0'+(i+1)+'</span><h4 class="d">'+s[0]+'</h4><span class="a">↗</span><span class="pg"></span>';
+S.forEach((s,i)=>{const d=document.createElement('button');d.type='button';d.className='it';d.setAttribute('role','tab');d.innerHTML='<span class="n mono">0'+(i+1)+'</span><h4 class="d">'+s[0]+'</h4><span class="pg"></span>';
  list.appendChild(d);const ph=document.createElement('div');ph.className='ph';ph.innerHTML='<img src="assets/service-3d/'+s[1]+'.webp" alt="">';frame.appendChild(ph);
  d.addEventListener('click',()=>pick(i,true));d.addEventListener('focus',()=>{if(cur!==i)pick(i,true)});
  d.addEventListener('mouseenter',()=>{if(!matchMedia('(hover:none)').matches&&cur!==i)pick(i,true)});
